@@ -97,15 +97,6 @@ def filter_ripple_band(data, sampling_frequency = 1250):
     return filtered_data
 
 
-# def _get_ripplefilter_kernel():
-#     """Returns the pre-computed ripple filter kernel from the Frank lab.
-#     The kernel is 150-250 Hz bandpass with 40 db roll off and 10 Hz
-#     sidebands. Sampling frequency is 1500 Hz.
-#     """
-#     filter_file = join(abspath(dirname(__file__)), "ripplefilter.mat")
-#     ripplefilter = loadmat(filter_file)
-#     return ripplefilter["ripplefilter"]["kernel"][0][0].flatten(), 1
-
 def _get_ripplefilter_kernel(sampling_frequency):
     """Returns a dynamically computed ripple filter kernel.
     The kernel is 150-250 Hz bandpass with 40 db roll off and 10 Hz
@@ -137,8 +128,8 @@ def _get_ripplefilter_kernel(sampling_frequency):
     # plt.ylabel('Gain (dB)')
     # plt.show()
 
-    # Convert the second-order sections to a filter kernel
-    filter_kernel = sos2tf(sos)[1]
+    # # Convert the second-order sections to a filter kernel
+    # filter_kernel = sos2tf(sos)[1]
 
     return sos
 
