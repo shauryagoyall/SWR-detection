@@ -358,6 +358,7 @@ def _get_event_stats(event_times, time, zscore_metric, speed):
     min_speed = []
     median_speed = []
     mean_speed = []
+    peak_times = []
 
     for start_time, end_time in event_times:
         ind = np.logical_and(time >= start_time, time <= end_time)
@@ -371,6 +372,7 @@ def _get_event_stats(event_times, time, zscore_metric, speed):
         min_speed.append(np.min(speed[ind]))
         median_speed.append(np.median(speed[ind]))
         mean_speed.append(np.mean(speed[ind]))
+        peak_times.append(  np.arange(start_time, end_time)[np.argmax(event_zscore)] )
 
     try:
         event_start_times = event_times[:, 0]
@@ -383,6 +385,7 @@ def _get_event_stats(event_times, time, zscore_metric, speed):
         {
             "start_time": event_start_times,
             "end_time": event_end_times,
+            "peak_time": peak_times,
             "duration": duration,
             "mean_zscore": mean_zscore,
             "median_zscore": median_zscore,
