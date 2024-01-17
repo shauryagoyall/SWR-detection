@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from scipy.stats import zscore
 
-from core import (
+from detectors_utils import (
     exclude_close_events,
     exclude_movement,
     gaussian_smooth,
